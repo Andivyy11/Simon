@@ -12,8 +12,16 @@
         body{
             text-align: center;
             font-family: monospace;
-             color: white;
-            background-color: rgb(27 28 32);
+            color: white;
+            background-color: rgb(39, 40, 40);
+        }
+        button{
+            background-color: rgb(167, 27, 167);
+            padding:8px 12px;
+            font-size: 25px;
+            font-weight: 600;
+            color: white;
+            border-radius: 10px;
         }
         .btn{
             display:inline-block;
@@ -76,8 +84,9 @@
 </head>
 <body>
     <h1>Test your hearing memory</h1>
+    <button onclick="startGame()">Start</button>
     <div id="score">Score : 0</div>
-    <h2 id="mssg">Press enter to Start</h2>
+    <h2 id="mssg"></h2>
     <div>
         <div class="btn" id="b1"></div>
         <div class="btn" id="b2"></div>

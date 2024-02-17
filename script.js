@@ -6,8 +6,7 @@ var mg=document.getElementById('mssg');
 var score=document.getElementById('score');
 var bttns=document.querySelectorAll('.btn');
 bttns.forEach((item)=> item.addEventListener('click' ,()=> clicked(item.id) ));
-document.addEventListener('keydown',(e)=>{ 
-  if(e.key=='Enter') 
+  function startGame()
   { 
       score.innerHTML='Score : 0';
       s=0;
@@ -15,7 +14,6 @@ document.addEventListener('keydown',(e)=>{
       memory=[];
       listen();
   } 
-});
 function  clicked(btn_Id)
 {
     if(z<memory.length)
@@ -25,7 +23,7 @@ function  clicked(btn_Id)
         z+=1;
       else 
       {
-        mg.innerHTML="Game  Over ! press enter";
+        mg.innerHTML="Game  Over !";
         z=0;
         memory=[];
         s=0;
