@@ -5,6 +5,8 @@ var s=0;
 var mg=document.getElementById('mssg');
 var score=document.getElementById('score');
 var bttns=document.querySelectorAll('.btn');
+var speed=2;
+var doListen=true;
 bttns.forEach((item)=> item.addEventListener('click' ,()=> clicked(item.id) ));
   function startGame()
   { 
@@ -12,10 +14,13 @@ bttns.forEach((item)=> item.addEventListener('click' ,()=> clicked(item.id) ));
       s=0;
       z=0;
       memory=[];
+      doListen=true;
       listen();
   } 
 function  clicked(btn_Id)
 {
+  if(!doListen)
+  {
     if(z<memory.length)
     {
       music(btn_Id);
@@ -35,10 +40,13 @@ function  clicked(btn_Id)
        {
         s+=1;
         score.innerHTML="Score : "+s;
+        if(s%5==0)
+          speed+=0.5;
         z=0;
         listen();
        }
     }
+  }
 }
 function music(x)
 {
@@ -65,24 +73,26 @@ function music(x)
       b=document.getElementById('b4');
     }
     b.style.opacity='0.5';
-    setTimeout(()=> b.style.opacity='1' , 400
-    )
+    setTimeout(()=> b.style.opacity='1' , 400)
+    audio.playbackRate=speed;
     audio.play();
 }
 function listen()
 {
-  setTimeout(()=> mg.innerHTML="Listen Notes..." ,1000);
+  doListen=true;
+  mg.innerHTML="Listen Notes...";
   var x=keys[parseInt(Math.random()*4)];
   memory.push(x);
-  playNotesInMemory();
+  setTimeout(()=>playNotesInMemory(),1000);
 }
 async function playNotesInMemory()
 {
    for(let i=0;i<memory.length;i++)
    {
-    await new Promise(resolve=> setTimeout(resolve,1000));
+    await new Promise(resolve=> setTimeout(resolve,500));
     music(memory[i]);
-   }
-   setTimeout(()=> mg.innerHTML='Play' , 1000)
+   } 
+   doListen=false;
+   mg.innerHTML="Play...";
 }
 
