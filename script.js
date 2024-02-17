@@ -65,11 +65,9 @@ function music(x)
       b=document.getElementById('b4');
     }
     b.style.opacity='0.5';
+    setTimeout(()=> b.style.opacity='1' , 400
+    )
     audio.play();
-    audio.addEventListener('ended',function release()
-    {
-      b.style.opacity='1';
-    });
 }
 function listen()
 {
@@ -82,7 +80,7 @@ async function playNotesInMemory()
 {
    for(let i=0;i<memory.length;i++)
    {
-    await new Promise(resolve=> setTimeout(resolve,1500));
+    await new Promise(resolve=> setTimeout(resolve,1000));
     music(memory[i]);
    }
    setTimeout(()=> mg.innerHTML='Play' , 1000)
